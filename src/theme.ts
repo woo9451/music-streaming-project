@@ -41,17 +41,18 @@ const theme = createTheme({
   components: {
     MuiButton: {
       styleOverrides: {
-        root: {
+        root: ({ ownerState }) => ({
           borderRadius: "30px",
           textTransform: "none",
-        },
-        containedSecondary: {
-          backgroundColor: "#ffffff",
-          color: "#000000",
-          "&:hover": {
-            backgroundColor: "#e0e0e0",
-          },
-        },
+          ...(ownerState.variant === "contained" &&
+            ownerState.color === "secondary" && {
+              backgroundColor: "#ffffff",
+              color: "#000000",
+              "&:hover": {
+                backgroundColor: "#e0e0e0",
+              },
+            }),
+        }),
         sizeLarge: {
           padding: "8px 32px",
           fontWeight: 700,

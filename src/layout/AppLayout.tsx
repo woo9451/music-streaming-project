@@ -104,13 +104,13 @@ const AppLayout = () => {
             <NavList>
               <StyledNavLink to="/" end>
                 <HomeIcon/>
-                  <Typography variant="h2" fontWeight={700}>
+                  <Typography variant="h2" sx={{ fontWeight: 700 }}>
                     Home
                   </Typography>
               </StyledNavLink>
               <StyledNavLink to="/search">
                 <SearchIcon/>
-                <Typography variant="h2" fontWeight={700}>
+                <Typography variant="h2" sx={{ fontWeight: 700 }}>
                   Search
                 </Typography>
               </StyledNavLink>
@@ -120,7 +120,7 @@ const AppLayout = () => {
             <LibraryHeader>
               <LibraryTitle>
                 <BookmarkIcon/>
-                <Typography variant="h2" fontWeight={700}>
+                <Typography variant="h2" sx={{ fontWeight: 700 }}>
                   Your Library
                 </Typography>
               </LibraryTitle>
@@ -129,7 +129,7 @@ const AppLayout = () => {
               </AddButton>
             </LibraryHeader>
             <PlaylistCard>
-              <Typography variant="body1" fontWeight={700}>
+              <Typography variant="body1" sx={{ fontWeight: 700 }}>
                 Create your first playlist
               </Typography>
               <Typography variant="subtitle1">
