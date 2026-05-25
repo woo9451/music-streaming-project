@@ -1,0 +1,66 @@
+.loading-spinner {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(30, 215, 96, 0.16), transparent 34%),
+    #101010;
+}
+
+.loading-spinner__disc {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  display: grid;
+  place-items: center;
+}
+
+.loading-spinner__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.14);
+  border-top-color: #1ed760;
+  border-right-color: #1ed760;
+  animation: loading-spinner-spin 900ms linear infinite;
+}
+
+.loading-spinner__pulse {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1ed760, #ffffff);
+  box-shadow: 0 0 34px rgba(30, 215, 96, 0.42);
+  animation: loading-spinner-pulse 1.2s ease-in-out infinite;
+}
+
+.loading-spinner__text {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@keyframes loading-spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-spinner-pulse {
+  0%,
+  100% {
+    transform: scale(0.82);
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
