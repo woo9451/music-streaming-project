@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, styled, Typography } from '@mui/material'
 import React from 'react'
 import { NavLink, Outlet } from 'react-router'
+import Navbar from './components/Navbar';
 
 const Layout = styled("div")({
     display:"flex",
@@ -141,7 +142,10 @@ const AppLayout = () => {
             </PlaylistCard>
           </LibraryBox>
         </Sidebar>
-        <Outlet/>
+        <ContentBox>
+          <Navbar/>
+          <Outlet/>
+        </ContentBox>
     </Layout>
   )
 }
