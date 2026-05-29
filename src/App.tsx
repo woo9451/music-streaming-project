@@ -8,6 +8,7 @@ const SearchPage = React.lazy(()=>import("./pages/SearchPage/SearchPage"));
 const SearchWithKeywordPage = React.lazy(()=>import("./pages/SearchWithKeywordPage/SearchWithKeywordPage"));
 const PlaylistDetailPage = React.lazy(()=>import("./pages/PlaylistDetailPage/PlaylistDetailPage"));
 const PlaylistPage = React.lazy(()=>import("./pages/PlaylistPage/PlaylistPage"));
+const AuthCallbackPage = React.lazy(()=>import("./pages/AuthCallbackPage/AuthCallbackPage"));
 
 
 // 0. 사이드바 있어야함 (플레이리스트, 메뉴)
@@ -27,6 +28,7 @@ function App() {
           <Route path="search/:keyword" element={<SearchWithKeywordPage/>}/>
           <Route path="playlist/:id" element={<PlaylistDetailPage/>}/>
           <Route path="playlist" element={<PlaylistPage/>}/>
+          <Route path="callback" element={<AuthCallbackPage/>}/>
         </Route>   
       </Routes>
     </Suspense>
