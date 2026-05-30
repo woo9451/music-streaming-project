@@ -1,16 +1,22 @@
 import { useQuery } from "@tanstack/react-query"
-import { getNewReleases } from "../apis/albumApi";
+import { getHomeContent } from "../apis/albumApi";
 import useClientCredentialToken from "./useClientCredentialToken";
 
 const useGetNewReleases = () => {
- const clientCredentialToken = useClientCredentialToken()
-    return useQuery({
-        queryKey:["new-releases"],
+ const { accessToken, isLoading: isTokenLoading, error: tokenError } = useClientCredentialToken()
+    const query = useQuery({
+        queryKey:["home-content"],
         queryFn:async()=>{
-         return getNewReleases(clientCredentialToken);
+         return getHomeContent(accessToken!);
         },
-        enabled:!!clientCredentialToken,
+        enabled:!!accessToken,
     });
+
+    return {
+        ...query,
+        error: tokenError || query.error,
+        isLoading: isTokenLoading || query.isLoading,
+    };
 };
 
 export default useGetNewReleases

@@ -13,6 +13,24 @@ export interface GetNewReleasesResponse {
     }
 }
 
+export interface GetTracksResponse {
+    tracks:{
+        href:string;
+        limit:number;
+        next:string | null;
+        offset:number;
+        previous:string | null;
+        total:number;
+        items:Track[];
+    }
+}
+
+export interface HomeContentResponse {
+    newReleases:SimplifiedAlbum[];
+    tracks:Track[];
+    albums:SimplifiedAlbum[];
+}
+
 export interface SimplifiedAlbum {
     album_type:string;
     total_tracks:string;
@@ -28,4 +46,11 @@ export interface SimplifiedAlbum {
     type:string;
     uri:string;
     artists:Artist[]
+}
+
+export interface Track {
+    album:SimplifiedAlbum;
+    artists:Artist[];
+    id:string;
+    name:string;
 }
