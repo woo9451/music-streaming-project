@@ -28,28 +28,6 @@ const NewReleases = () => {
             </CardItem>
           ))}
         </CardSection>
-        <CardSection title="TRACKS">
-          {data.tracks.map((track)=>(
-            <CardItem key={track.id}>
-              <Card 
-                image={track.album.images[0]?.url}
-                name={track.name}
-                artistName={track.artists[0].name}
-                />
-            </CardItem>
-          ))}
-        </CardSection>
-        <CardSection title="ALBUMS">
-          {data.albums.map((album)=>(
-            <CardItem key={album.id}>
-              <Card 
-                image={album.images[0]?.url}
-                name={album.name}
-                artistName={album.artists[0].name}
-                />
-            </CardItem>
-          ))}
-        </CardSection>
       </>
     ) : (
       <Typography variant="h2">No Data</Typography>
