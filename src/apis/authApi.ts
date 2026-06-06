@@ -1,17 +1,7 @@
 import axios from "axios"
-import { CLIENT_ID, CLIENT_SECRET, redirectUri } from "../configs/authConfig";
+import { CLIENT_ID, redirectUri } from "../configs/authConfig";
 import { ClientCredentialTokenResponse, ExchangeTokenResponse } from "../models/auth";
 import { REDIRECT_URI } from "../configs/commonConfig";
-
-const encodedBase64 = (data: string): string => {
-    if (typeof window !== "undefined") {
-        // 브라우저 환경
-        return btoa(data);
-    } else {
-        // Node.js 환경
-        return Buffer.from(data).toString("base64");
-    }
-};
 
 const generateRandomString = (length: number) => {
     const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -81,32 +71,6 @@ export const getTokenByCode = async (code: string): Promise<ClientCredentialToke
 
     return response.data;
 };
-
-export const getClientCredentialToken = async():Promise<ClientCredentialTokenResponse>=>{
-    try {
-        if (!CLIENT_ID || !CLIENT_SECRET) {
-            throw new Error("Spotify client credentials are missing");
-        }
-
-        const body = new URLSearchParams({
-            grant_type:"client_credentials"
-        })
-        const response = await axios.post("https://accounts.spotify.com/api/token",body,{
-            headers:{
-                Authorization:`Basic ${encodedBase64(
-                    CLIENT_ID+":"+CLIENT_SECRET
-                )}`,
-                "Content-Type":"application/x-www-form-urlencoded"
-            }
-        })
-        return response.data
-    } catch (error) {
-        if (error instanceof Error && error.message === "Spotify client credentials are missing") {
-            throw error;
-        }
-        throw new Error("Fail to fetch client credential token")
-    }
-}
 
 export const exchangeToken=async(code:string,codeVerifier:string):Promise<ExchangeTokenResponse>=>{
     try{
