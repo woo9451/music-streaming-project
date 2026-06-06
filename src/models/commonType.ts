@@ -9,3 +9,11 @@ export interface Image{
 export interface Restriction{
     reason?:string;
 }
+export interface Followers{
+    href:string;
+    total:number;
+}
+export interface ExplicitContent{
+    filter_enabled:boolean;
+    filter_locked:boolean;
+}

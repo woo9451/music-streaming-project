@@ -15,8 +15,7 @@ const NewReleases = () => {
   }
   return (
     <Section>
-    {data ? (
-      <>
+    {data && (
         <CardSection title="New Released Albums">
           {data.newReleases.map((album)=>(
             <CardItem key={album.id}>
@@ -28,9 +27,6 @@ const NewReleases = () => {
             </CardItem>
           ))}
         </CardSection>
-      </>
-    ) : (
-      <Typography variant="h2">No Data</Typography>
     )}
     </Section>
   )

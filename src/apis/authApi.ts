@@ -84,6 +84,10 @@ export const getTokenByCode = async (code: string): Promise<ClientCredentialToke
 
 export const getClientCredentialToken = async():Promise<ClientCredentialTokenResponse>=>{
     try {
+        if (!CLIENT_ID || !CLIENT_SECRET) {
+            throw new Error("Spotify client credentials are missing");
+        }
+
         const body = new URLSearchParams({
             grant_type:"client_credentials"
         })
@@ -97,6 +101,9 @@ export const getClientCredentialToken = async():Promise<ClientCredentialTokenRes
         })
         return response.data
     } catch (error) {
+        if (error instanceof Error && error.message === "Spotify client credentials are missing") {
+            throw error;
+        }
         throw new Error("Fail to fetch client credential token")
     }
 }

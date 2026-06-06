@@ -1,12 +1,11 @@
 import { Alert } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router";
+import { useSearchParams } from "react-router";
 import { getTokenByCode } from "../../apis/authApi";
 import LoadingSpinner from "../../common/components/LoadingSpinner/LoadingSpinner";
 
 const AuthCallbackPage = () => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const hasRequestedToken = useRef(false);
 
@@ -39,13 +38,13 @@ const AuthCallbackPage = () => {
         );
         window.localStorage.removeItem("spotify_code_verifier");
         window.localStorage.removeItem("code_verifier");
-        navigate("/", { replace: true });
+        window.location.replace("/");
       })
       .catch((error) => {
         console.error("Spotify login failed", error.response?.data || error);
         setErrorMessage("Fail to login with Spotify");
       });
-  }, [navigate, searchParams]);
+  }, [searchParams]);
 
   if (errorMessage) {
     return <Alert severity="error">{errorMessage}</Alert>;
