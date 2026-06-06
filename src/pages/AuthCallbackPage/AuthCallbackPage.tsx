@@ -38,6 +38,7 @@ const AuthCallbackPage = () => {
           String(Date.now() + data.expires_in * 1000)
         );
         window.localStorage.removeItem("spotify_code_verifier");
+        window.localStorage.removeItem("code_verifier");
         navigate("/", { replace: true });
       })
       .catch((error) => {

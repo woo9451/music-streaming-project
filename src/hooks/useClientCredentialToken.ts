@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getClientCredentialToken } from "../apis/authApi";
 
 const getStoredAccessToken = () => {
     const token = window.localStorage.getItem("spotify_access_token");
@@ -16,7 +15,7 @@ const getStoredAccessToken = () => {
 
 const useClientCredentialToken=()=>{
     const [accessToken, setAccessToken] = useState<string | undefined>(getStoredAccessToken);
-    const [isLoading, setIsLoading] = useState(!accessToken);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
@@ -24,25 +23,11 @@ const useClientCredentialToken=()=>{
 
         if (storedToken) {
             setAccessToken(storedToken);
-            setIsLoading(false);
             return;
         }
 
-        getClientCredentialToken()
-            .then((data) => {
-                window.localStorage.setItem("spotify_access_token", data.access_token);
-                window.localStorage.setItem(
-                    "spotify_expires_at",
-                    String(Date.now() + data.expires_in * 1000)
-                );
-                setAccessToken(data.access_token);
-            })
-            .catch((error) => {
-                setError(error instanceof Error ? error : new Error("Fail to fetch token"));
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+        setAccessToken(undefined);
+        setError(null);
     }, []);
 
     return { accessToken, isLoading, error };
